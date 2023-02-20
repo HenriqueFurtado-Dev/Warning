@@ -1,0 +1,146 @@
+/* --- Imports --- */
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
+
+/* --- Resets --- */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Alfa Slab One', cursive;   
+}
+
+/* CSS main */
+
+main {
+    background-color: rgb(15, 14, 14);
+    background-image: url("/assets/img/japan.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+}
+
+#overlay {
+    position: fixed; 
+    width: 100%; 
+    height: 100%; 
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(24, 23, 23, 0.994);
+  }
+
+main .line {
+    height: 150px;
+    width: 3000px;
+    max-width: 3000px;
+    background-color: rgb(62, 43, 43);
+    transform: rotate(340deg);
+    margin: 0 -100px;
+    margin-bottom: 120px;
+    padding-top: 15px;
+    box-shadow: 20px 0px 50px rgba(0, 0, 0, 0.2);
+}
+
+main .line h1 {
+    font-size: 80px;
+    color: #D3CFA6;
+    text-shadow: 2px 2px 2px red;
+    animation: text;
+    animation-duration: 20.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+main h2 {
+    font-size: 250px;
+    color: rgba(0, 0, 0, 0.117);
+    position: absolute;
+
+}
+
+main img {
+    width: 600px;
+    position: absolute;
+    top: 120px;
+}
+
+
+.stack {
+    display: grid;
+    grid-template-columns: 1fr;
+    font-size: 250px;
+    color: rgba(0, 0, 0, 0.117);
+    position: absolute;
+}
+  
+.stack span {
+    font-weight: bold;
+    grid-row-start: 1;
+    grid-column-start: 1;
+    font-size: 15rem;
+    --stack-height: calc(100% / var(--stacks) - 1px);
+    --inverse-index: calc(calc(var(--stacks) - 1) - var(--index));
+    --clip-top: calc(var(--stack-height) * var(--index));
+    --clip-bottom: calc(var(--stack-height) * var(--inverse-index));
+    clip-path: inset(var(--clip-top) 0 var(--clip-bottom) 0);
+    animation: stack 340ms cubic-bezier(.46,.29,0,1.24) 1 backwards calc(var(--index) * 120ms), glitch 2s ease infinite 2s alternate-reverse;
+}
+  
+.stack span:nth-child(odd) { --glitch-translate: 8px; }
+.stack span:nth-child(even) { --glitch-translate: -8px; }
+  
+@keyframes stack {
+    0% {
+      opacity: 0;
+      transform: translateX(-50%);
+      text-shadow: -20px 30px 0 #880000, 2px -3px 0 #412A2A;
+    };
+    60% {
+      opacity: 0.5;
+      transform: translateX(50%);
+    }
+    80% {
+      transform: none;
+      opacity: 1;
+      text-shadow: 20px -3px 0 #880000, -2px 30px 0 #412A2A;
+    }
+    100% {
+      text-shadow: none;
+    }
+  }
+  
+  @keyframes glitch {
+    0% {
+      text-shadow: -20px 3px 0 #880000, 2px -3px 0 #412A2A;
+      transform: translate(var(--glitch-translate));
+    }
+    2% {
+      text-shadow: 20px -3px 0 #880000, -2px 3px 0 #412A2A;
+    }
+    4%, 100% {  text-shadow: none; transform: none; }
+}
+
+
+@keyframes text {
+    0% {
+        transform: translateX(-2000px);
+    } 
+    100% {
+        transform: translateX(2000px);
+    }
+}
+
